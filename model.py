@@ -33,6 +33,10 @@ class ClimateModel:
         h, w = X.shape[1], X.shape[2]
         return pred.reshape(n, h, w)
 
+    def predict_future(self, X):
+        """Alias for predict — maintains compatibility with simulator."""
+        return self.predict(X)
+
 if __name__ == "__main__":
     X = np.random.rand(50, 16, 15, 7).astype(np.float32)
     y = np.random.rand(50, 16, 15).astype(np.float32)
@@ -41,3 +45,5 @@ if __name__ == "__main__":
     print("Training complete:", metrics)
     pred = model.predict(X[:3])
     print("Prediction shape:", pred.shape)
+    pred2 = model.predict_future(X[:3])
+    print("predict_future shape:", pred2.shape)
